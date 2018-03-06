@@ -34,7 +34,7 @@ int main()
 	else {	//device is found
 		std::cout<<"Success: a device is found for this user: "<<PlayerID<<" !\n";
 	
-		//prin out info about the batteries
+		//print out info about the batteries
 		PrintBatteryInfo(PlayerID);
 
 		//main loop
