@@ -26,6 +26,7 @@ void ProcessBackAndStartButtons(const XINPUT_STATE&);
 int main()
 {
 	XINPUT_STATE State;
+	XINPUT_STATE PrevState;	//previous state
 	int PlayerID = 0;	//0 - first user
 
 	if (XInputGetState(PlayerID, &State) != ERROR_SUCCESS){	//device not found
