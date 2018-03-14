@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-#define MAX_PLAYERS = 4	//maximum of 4 players
+#define MAX_PLAYERS 4	//maximum of 4 players
 
 //show some info about the device's batteries
 void PrintBatteryInfo(const int&);
