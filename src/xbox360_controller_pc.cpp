@@ -26,7 +26,6 @@ void ProcessBackAndStartButtons(const XINPUT_STATE&);
 int main()
 {
 	XINPUT_STATE State;
-	XINPUT_STATE PrevState;	//previous state
 	int PlayerID = 0;	//0 - first user
 
 	if (XInputGetState(PlayerID, &State) != ERROR_SUCCESS){	//device not found
@@ -35,7 +34,7 @@ int main()
 	else {	//device is found
 		std::cout<<"Success: a device is found for this user: "<<PlayerID<<" !\n";
 	
-		//print out info about the batteries
+		//prin out info about the batteries
 		PrintBatteryInfo(PlayerID);
 
 		//main loop
@@ -172,19 +171,28 @@ void ProcessThumbButtons(const XINPUT_STATE& State)
 //process the triggers
 void ProcessTriggers(const XINPUT_STATE& State, const int& PlayerID)
 {
-	//TODO:
-	/*
 	XINPUT_VIBRATION Vibration;
-	Vibration.wLeftMotorSpeed = (WORD)(65535.0f * (State.Gamepad.bLeftTrigger / 255.0f));
-	Vibration.wRightMotorSpeed = (WORD)(65535.0f * (State.Gamepad.bRightTrigger / 255.0f));
+	Vibration.wLeftMotorSpeed = 0;
+	Vibration.wRightMotorSpeed = 0;
+
+	//left trigger
+	if (State.Gamepad.bLeftTrigger > 0){
+		Vibration.wLeftMotorSpeed = (WORD)(65535.0f * (State.Gamepad.bLeftTrigger / 255.0f));	//trigger values: 255 is full pressure, 0 no pressure.
+	}
+	//right trigger
+	if (State.Gamepad.bRightTrigger > 0){
+		Vibration.wRightMotorSpeed = (WORD)(65535.0f * (State.Gamepad.bRightTrigger / 255.0f));
+	}
+
 	XInputSetState(PlayerID, &Vibration);
-	*/
 }
 //process the thumbsticks/joysticks
 void ProcessThumbs(const XINPUT_STATE& State, const int& PlayerID)
 {
 	//TODO:
 	/*
+
+	thumb: 32.767 full right, 0 center, -32,768 full left
 
 	*/
 }
